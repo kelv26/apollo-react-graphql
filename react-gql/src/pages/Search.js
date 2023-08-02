@@ -1,20 +1,23 @@
 import { gql, useLazyQuery } from '@apollo/client'
 import React, { useState } from 'react'
+import Navbar from '../components/navbar'
 
 
 const GET_CHARACTER_BY_LOCATION = gql`
-query getLocationsByName($name: String!){
+query getCharacterByName($name: String!){
     characters (filter: {
       name: $name
     }) {
       results {
+        id
+        name
         location {
           name
-        }     
+        }
       }
     }
 }
-`
+`;
 
 export default function Search() {
 
@@ -26,22 +29,34 @@ export default function Search() {
         }
     })
 
+    const handleSearch = () => {
+        getLocations({
+            variables: {
+                name
+            }
+        });
+    };
+
     console.log( error, loading, data, called)
 
     return (
         <>
-            <div>Search</div>
+            <Navbar/>
+            <h1>Search Location by Character Name</h1>
+            <p className='subtext'>To demonstrate: </p>
+            <p className='subtext'>- useLazyQuery() function from Apollo Client</p>
+            <p className='subtext'>- GraphQL query filter</p>
             <input value={name} onChange={(e)=> { setName(e.target.value)}} type='String'/>
-            <button onClick={() => getLocations()}>Search</button>
+            <button onClick={() => handleSearch()}>Search</button>
 
-            {loading && <div>spinner...</div>}
+            {loading && <div>loading...</div>}
             {error && <div>Something went wrong.</div>}
             {data && (
                 <ul>
-                {data.characters.results.map(character => {
+                {data.characters.results.map((character, index) => {
                     return (
                         //add unique key
-                        <li>{character.location.name}</li>
+                        <li key={index}>{character.location.name} [{character.name}]</li>
                     )
                 })}
                 </ul>

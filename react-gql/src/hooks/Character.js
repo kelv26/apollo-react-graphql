@@ -5,6 +5,7 @@ query getCharacter($id: ID!) {
     character(id: $id) {
         id
         image
+        name
         episode {
             name
             episode

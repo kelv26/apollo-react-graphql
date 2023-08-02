@@ -21,3 +21,42 @@ a.Character {
     margin: 1rem;
     color: #333;
 }
+
+/* NAVBAR COMPONENTS */
+/* For: src\components\navbar.js */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    border: #333 1px solid;
+    color: #333;
+    padding: 1rem;
+}
+
+.navbar-links {
+    display: flex;
+    justify-content: space-between;
+    width: 20%;
+}
+
+.navbar-link {
+    color: #000;
+    font-weight: bold;
+    text-decoration: none;
+    margin-right: 3rem;
+}
+
+.subtext {
+    font-size: 0.8rem;
+    color: #333;
+    margin-top: 0;
+}
+
+/* simple small horizontal div box with border */
+.episode-container {
+    border: 1px solid #333;
+    margin: 1rem;
+    padding: 1rem;
+}
